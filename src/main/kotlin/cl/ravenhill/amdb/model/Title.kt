@@ -1,6 +1,7 @@
 package cl.ravenhill.amdb.model
 
 import java.net.URI
+import java.time.LocalDate
 import java.util.*
 
 /**
@@ -17,6 +18,7 @@ import java.util.*
 class Title(
   id: String,
   var name: String,
+  var startDate: LocalDate,
 ) {
   val id: URI = URI.create(id)
   var score = 0.0
@@ -26,9 +28,9 @@ class Title(
   val parents get() = parentSet.toList()
 
   override fun equals(other: Any?) =
-    other is Title && other.id == this.id && other.name == this.name
+    other is Title && other.id == this.id
 
-  override fun hashCode() = Objects.hash(Title::class, id, name)
+  override fun hashCode() = Objects.hash(Title::class, id)
 
   fun addChild(child: Title) {
     childSet.add(child)

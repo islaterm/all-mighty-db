@@ -3,6 +3,8 @@
 - ``0.1.x`` Titles
 - ``0.0.x`` Playground
 ---
+- ``0.1.1.3`` Added start date to titles
+- ``0.1.1.2`` Base SQL table class (TODO: Title table)
 - ``0.1.1.1`` Basic titles definitions
 - ``0.0.5.2`` Features GSON
 - ``0.0.5.1`` Features default headers

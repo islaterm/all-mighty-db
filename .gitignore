@@ -142,8 +142,6 @@ gradle-app.setting
 # TODO: where does this rule come from?
 docs/_book
 
-# TODO: where does this rule come from?
-test/
 
 ### Java template
 # Compiled class file

@@ -4,7 +4,7 @@ val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 val exposed_version: String by project
-val postgres_version: String by project
+val sqlite_version: String by project
 
 plugins {
   application
@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "cl.ravenhill"
-version = "0.0.1"
+version = "0.1"
 
 application {
   mainClassName = "io.ktor.server.netty.EngineMain"
@@ -38,5 +38,5 @@ dependencies {
   implementation(group = "org.jetbrains.exposed", name = "exposed-core", version = exposed_version)
   implementation(group = "org.jetbrains.exposed", name = "exposed-dao", version = exposed_version)
   implementation(group = "org.jetbrains.exposed", name = "exposed-jdbc", version = exposed_version)
-  implementation(group = "org.postgresql", name = "postgresql", version = postgres_version)
+  implementation(group = "org.xerial", name = "sqlite-jdbc", version = sqlite_version)
 }

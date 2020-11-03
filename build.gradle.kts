@@ -3,6 +3,8 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val exposed_version: String by project
+val postgres_version: String by project
 
 plugins {
   application
@@ -28,9 +30,13 @@ dependencies {
   implementation("io.ktor:ktor-html-builder:$ktor_version")
   implementation("io.ktor:ktor-gson:$ktor_version")
   implementation("ch.qos.logback:logback-classic:$logback_version")
-  implementation("org.junit.jupiter:junit-jupiter:5.4.2")
   testImplementation("io.ktor:ktor-server-tests:$ktor_version")
   // JUnit
   testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api", version = "5.7.0")
   testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine", version = "5.7.0")
+  // Exposed
+  implementation(group = "org.jetbrains.exposed", name = "exposed-core", version = exposed_version)
+  implementation(group = "org.jetbrains.exposed", name = "exposed-dao", version = exposed_version)
+  implementation(group = "org.jetbrains.exposed", name = "exposed-jdbc", version = exposed_version)
+  implementation(group = "org.postgresql", name = "postgresql", version = postgres_version)
 }

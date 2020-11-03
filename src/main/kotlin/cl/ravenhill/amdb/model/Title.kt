@@ -18,7 +18,7 @@ import java.util.*
 class Title(
   uri: String,
   var name: String,
-  var startDate: LocalDate,
+  var releaseDate: LocalDate,
 ) {
   val id: URI = URI.create(uri)
   var score = 0.0

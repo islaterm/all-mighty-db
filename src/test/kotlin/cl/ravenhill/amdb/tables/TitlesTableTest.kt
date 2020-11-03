@@ -10,6 +10,7 @@ internal class TitlesTableTest : AbstractTableTest() {
   override fun setUp() {
     super.setUp()
     titles = TitlesTable(test = true)
+    expectedColumnNames = listOf(URI_K, NAME_K, SCORE_K, RELEASE_K)
   }
 
   @Test

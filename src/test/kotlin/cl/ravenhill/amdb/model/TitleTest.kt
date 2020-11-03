@@ -48,7 +48,7 @@ internal class TitleTest {
   @RepeatedTest(32)
   fun firstAppearanceDateTest() {
     val newDate = LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500))
-    checkProperty(startDate, newDate, Title::startDate)
+    checkProperty(startDate, newDate, Title::releaseDate)
   }
 
   private fun <T> checkProperty(

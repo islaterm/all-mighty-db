@@ -42,7 +42,7 @@ internal class TitleTest {
 
   @RepeatedTest(16)
   fun scoreTest() {
-    checkProperty(0.0, Random(seed).nextDouble(-10.0, 10.0), Title::score)
+    checkProperty(0.0f, Random(seed).nextDouble(-10.0, 10.0).toFloat(), Title::score)
   }
 
   @RepeatedTest(32)

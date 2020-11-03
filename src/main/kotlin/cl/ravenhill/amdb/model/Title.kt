@@ -1,27 +1,38 @@
+/**
+ * "All-Mighty DB" (c) by Ignacio Slater M.
+ * "All-Mighty DB" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
 package cl.ravenhill.amdb.model
 
-import java.net.URI
+import cl.ravenhill.amdb.tables.TitlesTable
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
+import org.jetbrains.exposed.dao.id.EntityID
 import java.time.LocalDate
 import java.util.*
 
 /**
- * Base class representing a Title in the database.
- * @property id URI
- *    a unique identifier for the title
- * @property name String
- *    the human-friendly identifier of the title
- * @property parentSet MutableList<Title>
- *    a list with the titles that contain this one as a child
- * @property children MutableList<Title>
- *    a list with other titles that belong to this one
+ * Base class representing a _title_ in the database.
+ * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
-class Title(
-  uri: String,
-  var name: String,
-  var releaseDate: LocalDate,
-) {
-  val id: URI = URI.create(uri)
-  var score = 0.0
+class Title(id: EntityID<Int>) : IntEntity(id) {
+
+  companion object : IntEntityClass<Title>(TitlesTable.Titles)
+
+  var uri by TitlesTable.Titles.uri
+  var name by TitlesTable.Titles.name
+  var release by TitlesTable.Titles.release
+  var score by TitlesTable.Titles.score
+
+  var releaseDate: LocalDate
+    get() = LocalDate.ofEpochDay(release)
+    set(value) {
+      release = value.toEpochDay()
+    }
+
   private val childSet = mutableSetOf<Title>()
   private val parentSet = mutableSetOf<Title>()
   val children get() = childSet.toList()

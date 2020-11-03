@@ -28,7 +28,7 @@ class TitlesTable(test: Boolean = false) : AbstractTable(Titles, test) {
   internal object Titles : IntIdTable() {
     val uri = varchar(URI_K, 48)
     val name = text(NAME_K)
-    val score = integer(SCORE_K)
-    val release = integer(RELEASE_K)
+    val score = float(SCORE_K)
+    val release = long(RELEASE_K)
   }
 }

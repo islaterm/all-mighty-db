@@ -16,11 +16,11 @@ import java.util.*
  *    a list with other titles that belong to this one
  */
 class Title(
-  id: String,
+  uri: String,
   var name: String,
   var startDate: LocalDate,
 ) {
-  val id: URI = URI.create(id)
+  val id: URI = URI.create(uri)
   var score = 0.0
   private val childSet = mutableSetOf<Title>()
   private val parentSet = mutableSetOf<Title>()

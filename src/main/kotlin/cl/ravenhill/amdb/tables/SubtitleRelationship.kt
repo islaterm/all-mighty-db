@@ -9,5 +9,8 @@ import org.jetbrains.exposed.dao.id.IntIdTable
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
 class SubtitleRelationship(test: Boolean = false) : AbstractTable(Subtitles, test) {
-  private object Subtitles : IntIdTable()
+  private object Subtitles : IntIdTable() {
+    val parent = reference("parent", TitlesTable.Titles)
+    val child = reference("child", TitlesTable.Titles)
+  }
 }

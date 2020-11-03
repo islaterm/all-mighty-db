@@ -16,7 +16,9 @@ abstract class AbstractTable(val table: Table, test: Boolean = false) {
   init {
     database = Database.connect("jdbc:sqlite:$dbPath", "org.sqlite.JDBC")
     transaction(database) {
-      addLogger(StdOutSqlLogger)
+      if (!test) {
+        addLogger(StdOutSqlLogger)
+      }
       SchemaUtils.create(table)
     }
   }

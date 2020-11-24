@@ -3,8 +3,9 @@
 - ``0.1.x`` Titles
 - ``0.0.x`` Playground
 ---
-- ``0.1.1.4`` Titles table column definitions
 - ``0.1.2.1`` Basic tests for subtitle relationship
+- ``0.1.1.5`` Updated Title creation test to db entity
+- ``0.1.1.4`` Titles table column definitions
 - ``0.1.1.3`` Added start date to titles
 - ``0.1.1.2`` Base SQL table class (TODO: Title table)
 - ``0.1.1.1`` Basic titles definitions

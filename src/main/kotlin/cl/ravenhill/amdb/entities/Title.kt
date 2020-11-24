@@ -5,7 +5,7 @@
  * You should have received a copy of the license along with this
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
-package cl.ravenhill.amdb.model
+package cl.ravenhill.amdb.entities
 
 import cl.ravenhill.amdb.tables.TitlesTable
 import org.jetbrains.exposed.dao.IntEntity
@@ -38,10 +38,17 @@ class Title(id: EntityID<Int>) : IntEntity(id) {
   val children get() = childSet.toList()
   val parents get() = parentSet.toList()
 
-  override fun equals(other: Any?) =
-    other is Title && other.id == this.id
+  override fun equals(other: Any?): Boolean {
+    if (other === this) {
+      return true
+    }
+    if (other !is Title) {
+      return false
+    }
+    return other.uri == this.uri
+  }
 
-  override fun hashCode() = Objects.hash(Title::class, id)
+  override fun hashCode() = Objects.hash(Title::class, uri)
 
   fun addChild(child: Title) {
     childSet.add(child)

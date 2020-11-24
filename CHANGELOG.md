@@ -4,6 +4,7 @@
 - ``0.0.x`` Playground
 ---
 - ``0.1.2.1`` Basic tests for subtitle relationship
+- ``0.1.1.6`` Updated tests for titles to use DB entities
 - ``0.1.1.5`` Updated Title creation test to db entity
 - ``0.1.1.4`` Titles table column definitions
 - ``0.1.1.3`` Added start date to titles

@@ -9,15 +9,20 @@ package cl.ravenhill.amdb.entities
 
 import org.junit.jupiter.api.AfterEach
 import java.io.File
+import kotlin.random.Random
 
 /**
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
 abstract class AbstractEntityTest {
   private val basePath = "${System.getProperty("user.dir")}/src/test/data"
+  protected var seed = 0L
+  protected lateinit var rng: Random
 
   open fun setUp() {
     File(basePath).mkdirs()
+    seed = Random.nextLong()
+    rng = Random(seed)
   }
 
   @AfterEach

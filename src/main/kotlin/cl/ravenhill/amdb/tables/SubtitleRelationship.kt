@@ -1,5 +1,7 @@
 package cl.ravenhill.amdb.tables
 
+import cl.ravenhill.amdb.entities.Title
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 /**
@@ -9,8 +11,11 @@ import org.jetbrains.exposed.dao.id.IntIdTable
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
 class SubtitleRelationship(test: Boolean = false) : AbstractTable(Subtitles, test) {
-  private object Subtitles : IntIdTable() {
+  companion object : IntEntityClass<Title>(TitlesTable.Titles)
+
+  internal object Subtitles : IntIdTable() {
     val parent = reference("parent", TitlesTable.Titles)
     val child = reference("child", TitlesTable.Titles)
+    override val primaryKey = PrimaryKey(parent, child)
   }
 }

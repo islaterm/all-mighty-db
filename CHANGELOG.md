@@ -3,6 +3,7 @@
 - ``0.1.x`` Titles
 - ``0.0.x`` Playground
 ---
+- ``0.1.2.2`` Subtitle relationship initial implementation
 - ``0.1.2.1`` Basic tests for subtitle relationship
 - ``0.1.1.6`` Updated tests for titles to use DB entities
 - ``0.1.1.5`` Updated Title creation test to db entity

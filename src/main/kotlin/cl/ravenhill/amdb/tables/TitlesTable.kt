@@ -25,7 +25,7 @@ class TitlesTable(test: Boolean = false) : AbstractTable(Titles, test) {
    *  - __score__: the average score of the title
    *  - __release_date__: the release date in UNIX time format
    */
-  internal object Titles : IntIdTable() {
+  object Titles : IntIdTable() {
     val uri = varchar(URI_K, 48)
     val name = text(NAME_K)
     val score = float(SCORE_K)

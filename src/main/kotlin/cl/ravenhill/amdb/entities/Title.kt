@@ -7,6 +7,7 @@
  */
 package cl.ravenhill.amdb.entities
 
+import cl.ravenhill.amdb.tables.SubtitleRelationship
 import cl.ravenhill.amdb.tables.TitlesTable
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -26,6 +27,7 @@ class Title(id: EntityID<Int>) : IntEntity(id) {
   var name by TitlesTable.Titles.name
   var release by TitlesTable.Titles.release
   var score by TitlesTable.Titles.score
+  var subtitles by SubtitleRelationship via SubtitleRelationship.Subtitles
 
   var releaseDate: LocalDate
     get() = LocalDate.ofEpochDay(release)

@@ -5,10 +5,11 @@ val kotlin_version: String by project
 val logback_version: String by project
 val exposed_version: String by project
 val sqlite_version: String by project
+val jena_version: String by project
 
 plugins {
   application
-  kotlin("jvm") version "1.4.10"
+  kotlin("jvm") version "1.4.21"
 }
 
 group = "cl.ravenhill"
@@ -39,4 +40,14 @@ dependencies {
   implementation(group = "org.jetbrains.exposed", name = "exposed-dao", version = exposed_version)
   implementation(group = "org.jetbrains.exposed", name = "exposed-jdbc", version = exposed_version)
   implementation(group = "org.xerial", name = "sqlite-jdbc", version = sqlite_version)
+  // Jena
+  implementation(group = "org.apache.jena", name = "jena", version = jena_version, ext = "pom")
+  implementation(
+    group = "org.apache.jena",
+    name = "apache-jena-libs",
+    version = jena_version,
+    ext = "pom"
+  )
+  implementation(group = "org.apache.jena", name = "jena-core", version = jena_version)
+  implementation(group = "org.apache.jena", name = "jena-arq", version = jena_version)
 }

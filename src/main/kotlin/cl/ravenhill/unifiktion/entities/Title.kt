@@ -5,9 +5,9 @@
  * You should have received a copy of the license along with this
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
-package cl.ravenhill.amdb.entities
+package cl.ravenhill.unifiktion.entities
 
-import cl.ravenhill.amdb.tables.TitlesTable
+import cl.ravenhill.unifiktion.tables.TitlesTable
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID

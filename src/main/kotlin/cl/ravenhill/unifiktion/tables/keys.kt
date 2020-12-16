@@ -1,4 +1,4 @@
-package cl.ravenhill.amdb.tables
+package cl.ravenhill.unifiktion.tables
 
 const val NAME_K = "name"
 const val URI_K = "uri"

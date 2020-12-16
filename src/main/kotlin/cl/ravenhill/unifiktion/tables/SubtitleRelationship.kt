@@ -1,4 +1,4 @@
-package cl.ravenhill.amdb.tables
+package cl.ravenhill.unifiktion.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
 

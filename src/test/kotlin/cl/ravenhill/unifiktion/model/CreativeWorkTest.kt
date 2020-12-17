@@ -8,50 +8,71 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import kotlin.random.Random
+import kotlin.random.nextUInt
 import kotlin.reflect.KMutableProperty1
 
 /**
  * @author [Ignacio Slater Muñoz](mailto:ignacio.slater@ug.uchile.cl)
+ * @see [CreativeWork]
+ * @see [Language]
  */
 internal class CreativeWorkTest {
   private lateinit var startDate: String
-  private val testName = "Example"
+  private val nameEn = Language.ENGLISH to "Example"
+  private val nameEs = Language.SPANISH to "Ejemplo"
   private lateinit var creativeWork: CreativeWork
-  private var score = 0.0f
   private var seed = 0L
   private lateinit var rng: Random
+  private lateinit var defaultNames: Map<Language, String>
 
   @BeforeEach
   fun setUp() {
     seed = Random.nextLong()
     rng = Random(seed)
-    startDate = LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
-    score = rng.nextFloat()
-    creativeWork = CreativeWork(mapOf(Language.ENGLISH to testName), startDate)
+    startDate =
+      LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
+    defaultNames = mapOf(nameEn)
+    creativeWork = CreativeWork(defaultNames, startDate)
   }
 
   @Test
   fun testConstructor() {
-    val expectedWork = CreativeWork(mapOf(Language.ENGLISH to testName), startDate)
+    val expectedWork = CreativeWork(defaultNames, startDate)
     assertEquals(expectedWork, creativeWork)
     assertEquals(expectedWork.hashCode(), creativeWork.hashCode())
     assertNotEquals(creativeWork, Any())
   }
 
-//  @Test
-//  fun testName() {
-//
-//    checkProperty(testName, "New name", CreativeWork::names)
-//  }
+  @Test
+  fun `names can be added and changed`() {
+    assertEquals(defaultNames, creativeWork.names)
+    creativeWork.addName(nameEs)
+    val newNames = (defaultNames + nameEs).toMutableMap()
+    assertEquals(newNames, creativeWork.names)
+    val dummy = "Dummy"
+    creativeWork.addName(Language.ENGLISH to dummy)
+    newNames[Language.ENGLISH] = "Dummy"
+    assertEquals(newNames, creativeWork.names)
+  }
 
-//  @RepeatedTest(16)
-//  fun scoreTest() {
-//    checkProperty(0.0f, Random(seed).nextDouble(-10.0, 10.0).toFloat(), CreativeWork::score)
-//  }
+  @ExperimentalUnsignedTypes
+  @RepeatedTest(32)
+  fun `wikidata equivalent can be set`() {
+    assertTrue(creativeWork.wikidata.isBlank())
+    val id = rng.nextUInt()
+    creativeWork.wikidata = "Q$id"
+    assertEquals("Q$id", creativeWork.wikidata, "Test failed with seed: $seed")
+  }
 
   @RepeatedTest(32)
-  fun `the release date should be modifiable`() {
-    val newDate: String = LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
+  fun scoreTest() {
+    checkProperty(Double.NaN, Random(seed).nextDouble(-10.0, 10.0), CreativeWork::score)
+  }
+
+  @RepeatedTest(32)
+  fun `release date should be modifiable`() {
+    val newDate: String =
+      LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
     checkProperty(startDate, newDate, CreativeWork::release)
   }
 

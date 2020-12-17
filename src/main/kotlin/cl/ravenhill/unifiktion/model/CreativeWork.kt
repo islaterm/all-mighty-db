@@ -27,13 +27,20 @@ import java.time.format.DateTimeFormatter
  *
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
-class CreativeWork(val names: Map<Language, String>, release: String) {
+class CreativeWork(names: Map<Language, String>, release: String) {
+  val uri = names[Language.ENGLISH]!!.replace("[^a-zA-Z\\d]".toRegex(), "")
+
+  private val _names = names.toMutableMap()
+  val names: Map<Language, String>
+    get() = _names.toMap()
+
   var release = release
     set(value) {
       DateTimeFormatter.ISO_DATE.parse(value)
       field = value
     }
-  val uri = names[Language.ENGLISH]!!.replace("[^a-zA-Z\\d]".toRegex(), "")
+
+  var score = Double.NaN
 
   init {
     // Checks the release date format upon creation
@@ -51,4 +58,8 @@ class CreativeWork(val names: Map<Language, String>, release: String) {
   override fun equals(other: Any?) = other is CreativeWork && other.uri == this.uri
 
   override fun hashCode() = uri.hashCode()
+
+  fun addName(name: Pair<Language, String>) {
+    _names[name.first] = name.second
+  }
 }

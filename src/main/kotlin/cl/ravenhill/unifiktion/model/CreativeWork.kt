@@ -7,24 +7,46 @@
  */
 package cl.ravenhill.unifiktion.model
 
-import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 
 /**
+ * Base class for all the creative works (be it books, music, etc.) in the database.
+ *
+ * @property names
+ *    a mapping of the name of the work for each language.
+ * @property release
+ *    a string representing the release date of the work following the ISO date format
+ *    ``yyyy-mm-dd``.
+ * @property uri
+ *    the unique identifier of this element in the database.
+ * @property wikidata
+ *    the id of the equivalent entity on WikiData
+ * @property sameAs
+ *    a map of the equivalent entities on external sources (e.g. WikiData, IMDB).
+ *
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
-class CreativeWork(val names: Map<Language, String>, release: LocalDate) {
-  val release: String = release.format(DateTimeFormatter.ISO_DATE)
+class CreativeWork(val names: Map<Language, String>, release: String) {
+  var release = release
+    set(value) {
+      DateTimeFormatter.ISO_DATE.parse(value)
+      field = value
+    }
   val uri = names[Language.ENGLISH]!!.replace("[^a-zA-Z\\d]".toRegex(), "")
+
+  init {
+    // Checks the release date format upon creation
+    DateTimeFormatter.ISO_DATE.parse(release)
+  }
 
   var wikidata: String = ""
     set(value) {
-      sameAs["wikidata"] = value
+      _sameAs["wikidata"] = value
       field = value
     }
-
-  val sameAs = mutableMapOf<String, String>()
+  private val _sameAs = mutableMapOf<String, String>()
+  val sameAs = _sameAs.toMap()
 
   override fun equals(other: Any?) = other is CreativeWork && other.uri == this.uri
 

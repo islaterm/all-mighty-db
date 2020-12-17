@@ -1,18 +1,20 @@
 package cl.ravenhill.unifiktion.model
 
-import cl.ravenhill.unifiktion.tables.TitlesTable
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.random.Random
+import kotlin.reflect.KMutableProperty1
 
 /**
  * @author [Ignacio Slater Muñoz](mailto:ignacio.slater@ug.uchile.cl)
  */
 internal class CreativeWorkTest {
-  private lateinit var startDate: LocalDate
+  private lateinit var startDate: String
   private val testName = "Example"
   private lateinit var creativeWork: CreativeWork
   private var score = 0.0f
@@ -23,7 +25,7 @@ internal class CreativeWorkTest {
   fun setUp() {
     seed = Random.nextLong()
     rng = Random(seed)
-    startDate = LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500))
+    startDate = LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
     score = rng.nextFloat()
     creativeWork = CreativeWork(mapOf(Language.ENGLISH to testName), startDate)
   }
@@ -38,57 +40,57 @@ internal class CreativeWorkTest {
 
 //  @Test
 //  fun testName() {
-//    checkProperty(testName, "New name", Title::name)
-//  }
 //
+//    checkProperty(testName, "New name", CreativeWork::names)
+//  }
+
 //  @RepeatedTest(16)
 //  fun scoreTest() {
-//    checkProperty(0.0f, Random(seed).nextDouble(-10.0, 10.0).toFloat(), Title::score)
+//    checkProperty(0.0f, Random(seed).nextDouble(-10.0, 10.0).toFloat(), CreativeWork::score)
 //  }
-//
-//  @RepeatedTest(32)
-//  fun firstAppearanceDateTest() {
-//    val newDate = LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500))
-//    checkProperty(startDate, newDate, Title::releaseDate)
-//  }
-//
-//  private fun <T> checkProperty(
-//    initialValue: T,
-//    finalValue: T,
-//    prop: KMutableProperty1<Title, T>
-//  ) {
-//    transaction {
-//      assertEquals(initialValue, prop.get(title), "Test failed with seed: $seed")
-//      prop.set(title, finalValue)
-//      assertEquals(finalValue, prop.get(title), "Test failed with seed: $seed")
-//    }
-//  }
+
+  @RepeatedTest(32)
+  fun firstAppearanceDateTest() {
+    val newDate: String = LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
+    checkProperty(startDate, newDate, CreativeWork::release)
+  }
+
+  private fun <T> checkProperty(
+    initialValue: T,
+    finalValue: T,
+    prop: KMutableProperty1<CreativeWork, T>
+  ) {
+    assertEquals(initialValue, prop.get(creativeWork), "Test failed with seed: $seed")
+    prop.set(creativeWork, finalValue)
+    assertEquals(finalValue, prop.get(creativeWork), "Test failed with seed: $seed")
+  }
+}
 //
 //  @Test
 //  fun manageChildrenTest() {
-//    manageRelativesTest(Title::children, Title::addChild, Title::removeChild, Title::parents)
+//    manageRelativesTest(CreativeWork::children, CreativeWork::addChild, CreativeWork::removeChild, CreativeWork::parents)
 //  }
 //
 //  @Test
 //  fun manageParentsTest() {
-//    manageRelativesTest(Title::parents, Title::addParent, Title::removeParent, Title::children)
+//    manageRelativesTest(CreativeWork::parents, CreativeWork::addParent, CreativeWork::removeParent, CreativeWork::children)
 //  }
 //
 //  private fun manageRelativesTest(
-//    relation: KProperty1<Title, List<Title>>,
-//    adder: KFunction2<Title, Title, Unit>,
-//    remover: KFunction2<Title, Title, Unit>,
-//    inverseRelation: KProperty1<Title, List<Title>>
+//    relation: KProperty1<CreativeWork, List<CreativeWork>>,
+//    adder: KFunction2<CreativeWork, CreativeWork, Unit>,
+//    remover: KFunction2<CreativeWork, CreativeWork, Unit>,
+//    inverseRelation: KProperty1<CreativeWork, List<CreativeWork>>
 //  ) {
 //    // The title starts with no relatives
 //    assertTrue(relation.get(title).isEmpty())
 //    // Checks that relatives can be added correctly
 //    for (i in 1 until Random.nextInt(1, 10)) {
 //      transaction {
-//        val relative = Title.new {
+//        val relative = CreativeWork.new {
 //          uri = "$i"
 //          name = "$i"
-//          releaseDate = startDate
+//          release = startDate
 //          score = 0.0F
 //        }
 //        adder.invoke(title, relative)
@@ -108,12 +110,11 @@ internal class CreativeWorkTest {
 //  }
 //
 //  private fun checkRelationship(
-//    relation: KProperty1<Title, List<Title>>,
-//    relative: Title,
-//    inverseRelation: KProperty1<Title, List<Title>>,
+//    relation: KProperty1<CreativeWork, List<CreativeWork>>,
+//    relative: CreativeWork,
+//    inverseRelation: KProperty1<CreativeWork, List<CreativeWork>>,
 //    related: Boolean = true
 //  ) {
 //    assertEquals(related, relative in relation.get(title))
 //    assertEquals(related, title in inverseRelation.get(relative))
 //  }
-}

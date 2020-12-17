@@ -1,12 +1,12 @@
 package cl.ravenhill.unifiktion.model
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import kotlin.random.Random
 import kotlin.reflect.KMutableProperty1
 
@@ -50,9 +50,21 @@ internal class CreativeWorkTest {
 //  }
 
   @RepeatedTest(32)
-  fun firstAppearanceDateTest() {
+  fun `the release date should be modifiable`() {
     val newDate: String = LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
     checkProperty(startDate, newDate, CreativeWork::release)
+  }
+
+  @Test
+  fun `an invalid release date should throw an error`() {
+    for (date in listOf("12-12-2020", "9999-99-99", "2012-13-1", "2020-11-31")) {
+      assertThrows(DateTimeParseException::class.java) {
+        CreativeWork(creativeWork.names, date)
+      }
+      assertThrows(DateTimeParseException::class.java) {
+        creativeWork.release = date
+      }
+    }
   }
 
   private fun <T> checkProperty(

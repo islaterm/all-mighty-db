@@ -24,7 +24,7 @@ open class SelectOperation(
       throw InvalidQueryException("No fields where supplied to the SELECT.")
     }
     fields.forEach {
-      if (!"^\\?[a-zA-Z0-9_]+\$".toRegex().matches(it)) {
+      if (!"^\\?[a-zA-Z0-9_*]+\$".toRegex().matches(it)) {
         throw InvalidQueryException("'$it' is not a valid field name.")
       }
     }

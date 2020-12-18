@@ -7,7 +7,7 @@
  */
 package cl.ravenhill.unifiktion
 
-import cl.ravenhill.unifiktion.model.CreativeWork
+import cl.ravenhill.unifiktion.model.cworks.Manga
 import cl.ravenhill.unifiktion.model.DBModel
 import cl.ravenhill.unifiktion.model.Language
 
@@ -16,13 +16,13 @@ import cl.ravenhill.unifiktion.model.Language
  */
 
 fun main() {
-  val undertale = CreativeWork(mapOf(Language.ENGLISH to "Undertale"), "2015-09-15")
+  val undertale = Manga(mapOf(Language.ENGLISH to "Undertale"), "2015-09-15")
   undertale.wikidata = "Q21039924"
-  DBModel.addCreativeWork(undertale)
+  DBModel.addManga(undertale)
 
-  val ddlc = CreativeWork(mapOf(Language.ENGLISH to "Doki Doki Literature Club!"), "2017-09-21")
+  val ddlc = Manga(mapOf(Language.ENGLISH to "Doki Doki Literature Club!"), "2017-09-21")
   ddlc.wikidata = "Q42266827"
-  DBModel.addCreativeWork(ddlc)
+  DBModel.addManga(ddlc)
 
   DBModel.save()
 }

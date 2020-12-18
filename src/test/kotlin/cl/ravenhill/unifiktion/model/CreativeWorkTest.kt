@@ -1,5 +1,6 @@
 package cl.ravenhill.unifiktion.model
 
+import cl.ravenhill.unifiktion.model.cworks.Manga
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
@@ -13,14 +14,14 @@ import kotlin.reflect.KMutableProperty1
 
 /**
  * @author [Ignacio Slater Muñoz](mailto:ignacio.slater@ug.uchile.cl)
- * @see [CreativeWork]
+ * @see [Manga]
  * @see [Language]
  */
-internal class CreativeWorkTest {
+internal abstract class AbstractWorkTest {
   private lateinit var startDate: String
   private val nameEn = Language.ENGLISH to "Example"
   private val nameEs = Language.SPANISH to "Ejemplo"
-  private lateinit var creativeWork: CreativeWork
+  private lateinit var creativeWork: Manga
   private var seed = 0L
   private lateinit var rng: Random
   private lateinit var defaultNames: Map<Language, String>
@@ -32,12 +33,12 @@ internal class CreativeWorkTest {
     startDate =
       LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
     defaultNames = mapOf(nameEn)
-    creativeWork = CreativeWork(defaultNames, startDate)
+    creativeWork = Manga(defaultNames, startDate)
   }
 
   @Test
   fun testConstructor() {
-    val expectedWork = CreativeWork(defaultNames, startDate)
+    val expectedWork = Manga(defaultNames, startDate)
     assertEquals(expectedWork, creativeWork)
     assertEquals(expectedWork.hashCode(), creativeWork.hashCode())
     assertNotEquals(creativeWork, Any())
@@ -66,21 +67,21 @@ internal class CreativeWorkTest {
 
   @RepeatedTest(32)
   fun scoreTest() {
-    checkProperty(Double.NaN, Random(seed).nextDouble(-10.0, 10.0), CreativeWork::score)
+    checkProperty(Double.NaN, Random(seed).nextDouble(-10.0, 10.0), Manga::score)
   }
 
   @RepeatedTest(32)
   fun `release date should be modifiable`() {
     val newDate: String =
       LocalDate.ofEpochDay(Random.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
-    checkProperty(startDate, newDate, CreativeWork::release)
+    checkProperty(startDate, newDate, Manga::release)
   }
 
   @Test
   fun `an invalid release date should throw an error`() {
     for (date in listOf("12-12-2020", "9999-99-99", "2012-13-1", "2020-11-31")) {
       assertThrows(DateTimeParseException::class.java) {
-        CreativeWork(creativeWork.names, date)
+        Manga(creativeWork.names, date)
       }
       assertThrows(DateTimeParseException::class.java) {
         creativeWork.release = date
@@ -91,7 +92,7 @@ internal class CreativeWorkTest {
   private fun <T> checkProperty(
     initialValue: T,
     finalValue: T,
-    prop: KMutableProperty1<CreativeWork, T>
+    prop: KMutableProperty1<Manga, T>
   ) {
     assertEquals(initialValue, prop.get(creativeWork), "Test failed with seed: $seed")
     prop.set(creativeWork, finalValue)

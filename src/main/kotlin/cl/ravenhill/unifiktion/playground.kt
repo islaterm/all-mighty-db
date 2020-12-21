@@ -7,22 +7,26 @@
  */
 package cl.ravenhill.unifiktion
 
-import cl.ravenhill.unifiktion.model.cworks.Manga
 import cl.ravenhill.unifiktion.model.DBModel
 import cl.ravenhill.unifiktion.model.Language
+import cl.ravenhill.unifiktion.model.cworks.Manga
+import cl.ravenhill.unifiktion.model.cworks.hentai.ArtistCG
 
 /**
  * @author <a href=mailto:ignacio.slater@ug.uchile.cl>Ignacio Slater Muñoz</a>
  */
 
 fun main() {
-  val undertale = Manga(mapOf(Language.ENGLISH to "Undertale"), "2015-09-15")
-  undertale.wikidata = "Q21039924"
-  DBModel.addManga(undertale)
-
-  val ddlc = Manga(mapOf(Language.ENGLISH to "Doki Doki Literature Club!"), "2017-09-21")
-  ddlc.wikidata = "Q42266827"
-  DBModel.addManga(ddlc)
+  val names =
+    mapOf(
+      Language.ENGLISH to "[Galaxy Monooki (Hanaduka Ryouji)] Extra CG Collection Vol. 03 " +
+          "Nami-san Only (One Piece)",
+      Language.JAPANESE to "[ギャラクシー物置 (華塚良治)] Extra CG Collection Vol. 03 ナミさんおんり～ " +
+          "(ワンピース)"
+    )
+  val example = ArtistCG(names, "2009-02-04")
+  example.addEquivalentEH("100002", "5625deb2bf")
+  DBModel.addArtistCG(example)
 
   DBModel.save()
 }

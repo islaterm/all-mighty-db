@@ -31,6 +31,7 @@ dependencies {
   implementation("io.ktor:ktor-html-builder:$ktor_version")
   implementation("io.ktor:ktor-gson:$ktor_version")
   implementation("ch.qos.logback:logback-classic:$logback_version")
+  implementation("org.junit.jupiter:junit-jupiter:5.4.2")
   testImplementation("io.ktor:ktor-server-tests:$ktor_version")
   // JUnit
   testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api", version = "5.7.0")

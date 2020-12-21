@@ -1,6 +1,8 @@
 package cl.ravenhill.unifiktion.model
 
+import cl.ravenhill.unifiktion.model.cworks.ICreativeWork
 import cl.ravenhill.unifiktion.model.cworks.Manga
+import cl.ravenhill.unifiktion.model.cworks.hentai.ArtistCG
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
@@ -18,30 +20,21 @@ import kotlin.reflect.KMutableProperty1
  * @see [Language]
  */
 internal abstract class AbstractWorkTest {
-  private lateinit var startDate: String
+  protected lateinit var startDate: String
   private val nameEn = Language.ENGLISH to "Example"
   private val nameEs = Language.SPANISH to "Ejemplo"
   private lateinit var creativeWork: Manga
   private var seed = 0L
   private lateinit var rng: Random
-  private lateinit var defaultNames: Map<Language, String>
+  protected lateinit var defaultNames: Map<Language, String>
 
-  @BeforeEach
-  fun setUp() {
+  open fun setUp() {
     seed = Random.nextLong()
     rng = Random(seed)
     startDate =
       LocalDate.ofEpochDay(rng.nextLong(-36_500, 36_500)).format(DateTimeFormatter.ISO_DATE)
     defaultNames = mapOf(nameEn)
     creativeWork = Manga(defaultNames, startDate)
-  }
-
-  @Test
-  fun testConstructor() {
-    val expectedWork = Manga(defaultNames, startDate)
-    assertEquals(expectedWork, creativeWork)
-    assertEquals(expectedWork.hashCode(), creativeWork.hashCode())
-    assertNotEquals(creativeWork, Any())
   }
 
   @Test
@@ -97,6 +90,18 @@ internal abstract class AbstractWorkTest {
     assertEquals(initialValue, prop.get(creativeWork), "Test failed with seed: $seed")
     prop.set(creativeWork, finalValue)
     assertEquals(finalValue, prop.get(creativeWork), "Test failed with seed: $seed")
+  }
+
+  protected fun checkConstructor(
+    actualWork: ICreativeWork,
+    constructor: (Map<Language, String>, String) -> ICreativeWork,
+    names: Map<Language, String>,
+    release: String
+  ) {
+    val expectedWork = constructor(names, release)
+    assertEquals(expectedWork, actualWork)
+    assertEquals(expectedWork.hashCode(), actualWork.hashCode())
+    assertNotEquals(actualWork, Any())
   }
 }
 //

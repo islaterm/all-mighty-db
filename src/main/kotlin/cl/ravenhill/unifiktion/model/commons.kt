@@ -18,5 +18,6 @@ enum class Language(val id: String) {
 }
 
 enum class Source(val url: String) {
-  WIKIDATA("http://www.wikidata.org/entity/")
+  WIKIDATA("http://www.wikidata.org/entity/"),
+  EHENTAI("https://e-hentai.org/g/")
 }

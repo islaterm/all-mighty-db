@@ -7,8 +7,9 @@
  */
 package cl.ravenhill.unifiktion.model
 
-import cl.ravenhill.kenia.SparqlQuery
+import cl.ravenhill.unifiktion.model.cworks.ICreativeWork
 import cl.ravenhill.unifiktion.model.cworks.Manga
+import cl.ravenhill.unifiktion.model.cworks.hentai.ArtistCG
 import org.apache.jena.datatypes.xsd.XSDDatatype
 import org.apache.jena.rdf.model.*
 import org.apache.jena.riot.Lang
@@ -24,6 +25,7 @@ private const val attributes = "${unifiktion}attributes/#"
 private const val creativeWorks = "${unifiktion}cworks/"
 
 private object Category {
+  val artistCG: Property = ResourceFactory.createProperty("${categories}ArtistCG")
   val videoGame: Property = ResourceFactory.createProperty("${categories}VideoGame")
   val creativeWork: Property = ResourceFactory.createProperty("${categories}CreativeWork")
   val manga: Property = ResourceFactory.createProperty("${categories}Manga")
@@ -35,12 +37,15 @@ private object Attribute {
 }
 
 object DBModel {
-  private var storage = "data/creative_works.ttl"
-  private var model = RDFDataMgr.loadModel(storage)
+  private const val basePath = "data/creative_works"
+  private var ttlStorage = "$basePath.ttl"
+  private var xmlStorage = "$basePath.xml"
+  private var model = RDFDataMgr.loadModel(ttlStorage)
 
   internal fun setModel(path: String) {
-    storage = path
-    model = RDFDataMgr.loadModel(storage)
+    ttlStorage = "$path.ttl"
+    xmlStorage = "$path.xml"
+    model = RDFDataMgr.loadModel(ttlStorage)
   }
 
   fun addManga(manga: Manga) {
@@ -57,8 +62,27 @@ object DBModel {
     }
   }
 
+  fun addArtistCG(gallery: ArtistCG) {
+    addResource(gallery, Category.artistCG)
+  }
+
+  private fun addResource(work: ICreativeWork, category: Property) {
+    val resource = model.createResource("$unifiktion${work.uri}")
+      .addProperty(RDF.type, category)
+      .addLiteral(Attribute.release, model.createTypedLiteral(work.release, XSDDatatype.XSDdate))
+      .addLiteral(Attribute.score, model.createTypedLiteral(work.score))
+    work.sameAs.forEach { (source, id) -> resource.addProperty(OWL.sameAs, "${source.url}$id") }
+    work.names.forEach { (lang, name) ->
+      resource.addLiteral(
+        RDFS.label,
+        model.createLiteral(name, lang.id)
+      )
+    }
+  }
+
   fun save() {
-    RDFDataMgr.write(File(storage).outputStream(), model, Lang.TURTLE)
+    RDFDataMgr.write(File(ttlStorage).outputStream(), model, Lang.TURTLE)
+    RDFDataMgr.write(File(xmlStorage).outputStream(), model, Lang.RDFXML)
   }
 
   fun getManga(uri: String): Manga {

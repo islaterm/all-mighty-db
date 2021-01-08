@@ -16,8 +16,6 @@ import kotlin.reflect.KMutableProperty1
 
 /**
  * @author [Ignacio Slater Muñoz](mailto:ignacio.slater@ug.uchile.cl)
- * @see [Manga]
- * @see [Language]
  */
 internal abstract class AbstractWorkTest {
   protected lateinit var startDate: String

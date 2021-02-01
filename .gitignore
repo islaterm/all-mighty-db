@@ -282,5 +282,6 @@ $RECYCLE.BIN/
 .idea/
 *.ttl
 *.rq
+secret.yml
 
 data/

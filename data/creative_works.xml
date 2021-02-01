@@ -10,118 +10,118 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#HGameCG">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Game_CG"/>
-    <rdfs:label xml:lang="en">Eroge CG</rdfs:label>
     <uf:source>
       <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Eroge">
         <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1046788"/>
-        <rdfs:label xml:lang="en">Eroge</rdfs:label>
-        <rdfs:subClassOf>
-          <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#VideoGame">
-            <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q7889"/>
-            <rdfs:label xml:lang="en">Video Game</rdfs:label>
-            <rdfs:subClassOf>
-              <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#AudioVisualWork">
-                <rdfs:label xml:lang="en">Audio-Visual Work</rdfs:label>
-                <rdfs:subClassOf>
-                  <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#CreativeWork">
-                    <rdfs:label xml:lang="en">Creative Work</rdfs:label>
-                    <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q17537576"/>
-                  </rdf:Description>
-                </rdfs:subClassOf>
-              </rdf:Description>
-            </rdfs:subClassOf>
-          </rdf:Description>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
           <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Hentai">
             <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q172067"/>
             <owl:onProperty rdf:resource="http://unifiktion.ravenhill.cl/source"/>
             <owl:hasValue rdf:resource="http://unifiktion.ravenhill.cl/categories/#Eroge"/>
             <uf:countryOfOrigin rdf:resource="http://unifiktion.ravenhill.cl/Japan"/>
-            <rdfs:label xml:lang="en">Hentai</rdfs:label>
             <rdfs:subClassOf>
               <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#PornographicWork">
                 <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q291"/>
+                <rdfs:subClassOf>
+                  <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#AudioVisualWork">
+                    <rdfs:subClassOf>
+                      <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#CreativeWork">
+                        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q17537576"/>
+                        <rdfs:label xml:lang="en">Creative Work</rdfs:label>
+                      </rdf:Description>
+                    </rdfs:subClassOf>
+                    <rdfs:label xml:lang="en">Audio-Visual Work</rdfs:label>
+                  </rdf:Description>
+                </rdfs:subClassOf>
                 <rdfs:label xml:lang="en">Pornographic Work</rdfs:label>
-                <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#AudioVisualWork"/>
               </rdf:Description>
             </rdfs:subClassOf>
+            <rdfs:label xml:lang="en">Hentai</rdfs:label>
           </rdf:Description>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+          <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#VideoGame">
+            <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q7889"/>
+            <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#AudioVisualWork"/>
+            <rdfs:label xml:lang="en">Video Game</rdfs:label>
+          </rdf:Description>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Eroge</rdfs:label>
       </rdf:Description>
     </uf:source>
+    <rdfs:label xml:lang="en">Eroge CG</rdfs:label>
   </rdf:Description>
   <cat:ArtistCG rdf:about="http://unifiktion.ravenhill.cl/ARTIST_CGGalaxyMonookiHanadukaRyoujiExtraCGCollectionVol03NamisanOnlyOnePiece">
-    <rdfs:label xml:lang="jp">[ギャラクシー物置 (華塚良治)] Extra CG Collection Vol. 03 ナミさんおんり～ (ワンピース)</rdfs:label>
-    <rdfs:label xml:lang="en">[Galaxy Monooki (Hanaduka Ryouji)] Extra CG Collection Vol. 03 Nami-san Only (One Piece)</rdfs:label>
     <owl:sameAs>https://e-hentai.org/g/100002/5625deb2bf</owl:sameAs>
     <attr:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
     >NaN</attr:score>
     <attr:release rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2009-02-04</attr:release>
+    <rdfs:label xml:lang="en">[Galaxy Monooki (Hanaduka Ryouji)] Extra CG Collection Vol. 03 Nami-san Only (One Piece)</rdfs:label>
+    <rdfs:label xml:lang="jp">[ギャラクシー物置 (華塚良治)] Extra CG Collection Vol. 03 ナミさんおんり～ (ワンピース)</rdfs:label>
   </cat:ArtistCG>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Western">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Western"/>
-    <rdfs:label xml:lang="en">Western Erotic Gallery</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#PornographicWork"/>
     <rdfs:subClassOf>
       <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#VisualWork">
-        <rdfs:label xml:lang="en">Visual Work</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#AudioVisualWork"/>
+        <rdfs:label xml:lang="en">Visual Work</rdfs:label>
       </rdf:Description>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#PornographicWork"/>
+    <rdfs:label xml:lang="en">Western Erotic Gallery</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#HArtistCG">
-    <rdfs:label xml:lang="en">Hentai Artist CG</rdfs:label>
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Artist_CG"/>
     <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#Hentai"/>
+    <rdfs:label xml:lang="en">Hentai Artist CG</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Cosplay">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Cosplay"/>
-    <rdfs:label xml:lang="en">Visual Work</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
+    <rdfs:label xml:lang="en">Visual Work</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#HentaiDoujinshi">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Doujinshi"/>
     <uf:publication rdf:resource="http://unifiktion.ravenhill.cl/SelfPublished"/>
-    <rdfs:label xml:lang="en">Hentai Doujinshi</rdfs:label>
     <rdfs:subClassOf>
       <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#HentaiManga">
         <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Manga"/>
-        <rdfs:label xml:lang="en">Hentai Manga</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#Hentai"/>
         <rdfs:subClassOf>
           <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Manga">
             <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q8274"/>
             <uf:countryOfOrigin rdf:resource="http://unifiktion.ravenhill.cl/Japan"/>
-            <rdfs:label xml:lang="en">Manga</rdfs:label>
             <rdfs:subClassOf>
               <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Comic">
                 <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1004"/>
-                <rdfs:label xml:lang="en">Comic</rdfs:label>
                 <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
+                <rdfs:label xml:lang="en">Comic</rdfs:label>
               </rdf:Description>
             </rdfs:subClassOf>
+            <rdfs:label xml:lang="en">Manga</rdfs:label>
           </rdf:Description>
         </rdfs:subClassOf>
-        <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#Hentai"/>
+        <rdfs:label xml:lang="en">Hentai Manga</rdfs:label>
       </rdf:Description>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Hentai Doujinshi</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#Misc">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Miscellaneous"/>
-    <rdfs:label xml:lang="en">Misc</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
+    <rdfs:label xml:lang="en">Misc</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#HImageSet">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Image_Set"/>
-    <rdfs:label xml:lang="en">Hentai Image Set</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
     <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#Hentai"/>
+    <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
+    <rdfs:label xml:lang="en">Hentai Image Set</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://unifiktion.ravenhill.cl/categories/#NonH">
     <owl:sameAs rdf:resource="https://ehwiki.org/wiki/Gallery_Categories/#Non-H"/>
     <uf:countryOfOrigin rdf:resource="http://unifiktion.ravenhill.cl/Japan"/>
-    <rdfs:label xml:lang="en">Non-H Gallery</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://unifiktion.ravenhill.cl/categories/#VisualWork"/>
+    <rdfs:label xml:lang="en">Non-H Gallery</rdfs:label>
   </rdf:Description>
 </rdf:RDF>

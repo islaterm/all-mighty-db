@@ -43,6 +43,7 @@ interface ICreativeWork {
    *    ``Language.ENGLISH to "The Lord of the Rings"``
    */
   fun addName(name: Pair<Language, String>)
+  fun addEquivalentEH(id: String, token: String)
 }
 
 /**
@@ -84,6 +85,10 @@ abstract class AbstractWork(
   override fun addName(name: Pair<Language, String>) {
     _names[name.first] = name.second
   }
+
+  override fun addEquivalentEH(id: String, token: String) {
+    _sameAs[Source.EHENTAI] = "$id/$token"
+  }
 }
 
 /**
@@ -91,7 +96,8 @@ abstract class AbstractWork(
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
 enum class CWorkType(private val id: String) {
-  MANGA("MANGA");
+  MANGA("MANGA"),
+  ARTIST_CG("ARTIST_CG");
 
   override fun toString() = id
 }

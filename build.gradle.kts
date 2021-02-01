@@ -20,12 +20,14 @@ application {
 }
 
 repositories {
-  mavenCentral()
   jcenter()
+  mavenCentral()
+  maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
 }
 
 dependencies {
   implementation(kotlin("stdlib"))
+  implementation("it.skrape:skrapeit-core:1.0.0-alpha8")
   // Ktor
   implementation("io.ktor:ktor-server-netty:$ktor_version")
   implementation("io.ktor:ktor-html-builder:$ktor_version")
@@ -51,4 +53,12 @@ dependencies {
   )
   implementation(group = "org.apache.jena", name = "jena-core", version = jena_version)
   implementation(group = "org.apache.jena", name = "jena-arq", version = jena_version)
+}
+
+tasks.test {
+  useJUnitPlatform()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+  kotlinOptions.jvmTarget = "13"
 }

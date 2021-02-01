@@ -142,8 +142,6 @@ gradle-app.setting
 # TODO: where does this rule come from?
 docs/_book
 
-# TODO: where does this rule come from?
-test/
 
 ### Java template
 # Compiled class file
@@ -281,4 +279,6 @@ $RECYCLE.BIN/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
-.idea/sonarlint
+.idea/
+*.ttl
+*.rq

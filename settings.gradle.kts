@@ -1,2 +1,1 @@
-rootProject.name = "amdb"
-
+rootProject.name = "unifiktion"

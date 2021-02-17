@@ -3,6 +3,7 @@
 - ``0.1.x`` Titles
 - ``0.0.x`` Playground
 ---
+- ``0.1.3.2`` CW URIs
 - ``0.1.3.1`` Creative work basic functionalities
 - ``0.1.2.1`` Basic tests for subtitle relationship
 - ``0.1.1.6`` Updated tests for titles to use DB entities

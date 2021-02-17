@@ -62,6 +62,12 @@ class Author private constructor(name: String) : Person(name) {
   }
 }
 
+data class Dummy(val links: List<String> = emptyList())
+
 fun main() {
-  Author.from("https://myanimelist.net/manga/933/Elfen_Lied?q=elfen lied&cat=manga")
+  val data = skrape(HttpFetcher) {
+    request { this.url = "https://w11.mangafreak.net/Manga/Kinnikuman" }
+    extractIt<Dummy> { htmlDocument { println(findAll { eachLink }.filter { (_, link) -> "^http://images.mangafreak.net:8080/downloads/.+$".toRegex()
+                .matches(link) })} }
+  }
 }

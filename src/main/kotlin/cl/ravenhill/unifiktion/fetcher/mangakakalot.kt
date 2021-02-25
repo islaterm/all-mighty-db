@@ -7,21 +7,22 @@
  */
 package cl.ravenhill.unifiktion.fetcher
 
-class ReadMFetcher :
-  MangaFetcher("https://www.readm.org", { id -> "^/manga/$id/\\d+/all-pages$".toRegex() }) {
+class MangakakalotFetcher : MangaFetcher(
+  "https://manganelo.com/manga",
+  { id -> "https://manganelo.com/chapter/$id/chapter_.*$".toRegex() }) {
 
-  data class ReadMPage(
+  data class MangakakalotPage(
     override var title: String = "",
     override var allLinks: List<String> = emptyList()
-  ) : MangaPage(chapterIdIndex = 3)
+  ) : MangaPage(chapterIdIndex = 5)
 
   companion object {
-    private val fetcherInstance = ReadMFetcher()
+    private val fetcherInstance = MangakakalotFetcher()
 
-    fun fetch(id: Int) = fetcherInstance.fetch<ReadMPage>("$id")
+    fun fetch(id: String) = fetcherInstance.fetch<MangakakalotPage>(id)
   }
 }
 
 fun main() {
-  ReadMFetcher.fetch(4101).download()
+  MangakakalotFetcher.fetch("read_boku_no_hero_academia_manga").download()
 }
